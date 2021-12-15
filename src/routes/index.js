@@ -15,13 +15,13 @@ export default createRouter({
       // http://google.com/  /기호: 가장 메인페이지로 접근하겠다는 의미
       // components: 메인페이지로 이동했을 때 어떤 vue.js의 컴포넌트를 사용할지 명시
       path: '/',
-      components: Home
+      component: Home
     },
     {
       // http://google.com/about 이라는 페이지로 이동
       // 그때 연결된 vue.js의 컴포넌트가 적용
       path: '/about',
-      components: About
+      component: About
     }
   ]
 })

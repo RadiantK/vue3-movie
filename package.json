@@ -2,7 +2,7 @@
   "name": "webpack-templet-basic",
   "version": "1.0.0",
   "description": "",
-  "__browserslist": "이 프로젝트가 지원하는 대상 브라우저를 지정 for Autoprefixer!",
+  "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
