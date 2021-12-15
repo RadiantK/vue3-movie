@@ -1,6 +1,7 @@
 // movie.js 영화 검색과 관련되어 있는 데이터를 취급하는 용도
 
 import axios from 'axios'
+import _uniqBy from 'lodash/uniqBy'
 
 export default {
   // (module!) movie.js가 하나의 스토어에서 module화되서 사용될 수 있다는 명시
@@ -60,7 +61,8 @@ export default {
       // updateState()가 실행될때 하나의 객체데이터가 payload라는 
       // updateState()의 매개변수로 들어감
       commit('updateState', {
-        movies: Search
+        // Search로 검색한 영화명을 imdbID로 고유화
+        movies: _uniqBy(Search, 'imdbID')
       })
       console.log(totalResults); // 297 10개씩 나타나기때문에 30번검색
       console.log(typeof totalResults); // string
@@ -79,7 +81,7 @@ export default {
           const { Search } = res.data
           commit('updateState', {
             // 새로운 요청이 들어갈 때마다 새로운 배열데이터를 만들어서 movies에 할당
-            movies: [...state.movies, ...Search]
+            movies: [...state.movies, ..._uniqBy(Search, 'imdbID')]
           })
         }
       }
