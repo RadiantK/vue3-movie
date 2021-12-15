@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   data() {
@@ -76,11 +75,18 @@ export default {
   },
   methods: {
     async apply() {
-      // Search movies...
-      const OMDB_API_KEY = '7035c60c';
-      // https 확인할것
-      const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
-      console.log(res);
+      // store의 Mutations를 실행할 때 .commit() 메소드 사용
+      // store의 Actions를 실행할 때 .dispatch() 메소드 사용
+      // movie라는 스토어에 접근해서 searchMovies 실행.
+
+      // index.js 에서 사용한 모듈에 연결한 movie
+      this.$store.dispatch('movie/searchMovies', {
+        // payload의 데이터 전달
+        title: this.title,
+        type: this.type,
+        number: this.number,
+        year: this.year
+      })
     }
   }
 }
