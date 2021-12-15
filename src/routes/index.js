@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from './Home'
+import Movie from './Movie'
 import About from './About'
 
 // main.js에서 router라는 이름으로 받아서 하나의 플러그인으로 현재 프로젝트에 적용
@@ -16,6 +17,10 @@ export default createRouter({
       // components: 메인페이지로 이동했을 때 어떤 vue.js의 컴포넌트를 사용할지 명시
       path: '/',
       component: Home
+    },
+    {
+      path: '/movie',
+      component: Movie
     },
     {
       // http://google.com/about 이라는 페이지로 이동

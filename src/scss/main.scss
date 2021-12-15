@@ -1,0 +1,31 @@
+// Default variable overrides
+// 예시 $body-bg: #000;
+// 예시 $body-color: #111;
+$primary: #FDC000;
+// primary라는 이름을 가진 변수들이 노란색으로 활용됨
+// 속성을 정의할 때 varuables부분의 코드가 실행되기 전에 만들어져야함.
+
+
+// Required
+// 밖으로 두번 빠져나가야 하므로 ../../
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+// 테마 색상
+// variables에 정의되어있으므로 위에 선언하면 에러 발생 
+// 선언후 동작할 수 있도록 변수 코드 선언 아래애 둘 것.
+// 단, 기본값을 전부 다 정의해주면 위에 두어도 됨
+// $theme-colors: (
+//   "primary":    $primary,
+//   "secondary":  $secondary,
+//   "success":    $success,
+//   "info":       $info,
+//   "warning":    $warning,
+//   "danger":     $danger,
+//   "light":      $light,
+//   "dark":       $dark
+// );
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
