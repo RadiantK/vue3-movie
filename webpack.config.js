@@ -53,7 +53,7 @@ module.exports = {
           'postcss-loader',         
           {
             // 모든 컴포넌트 전역에서 @import '~/scss/main' 없이
-            // scss 스타일 사용하기
+            // scss 스타일 사용하기(설정하고 개발자서버 재부팅 할것)
             loader: 'sass-loader',
             options: {
               additionalData: '@import "~/scss/main";'

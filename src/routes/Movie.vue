@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
 
 export default {
@@ -95,18 +96,22 @@ export default {
     }
   },
   computed: {
-    theMovie() {
-      return this.$store.state.movie.theMovie
-    },
-    loading() {
-      return this.$store.state.movie.loading
-    }
+    ...mapState('movie', [
+      'theMovie',
+      'loading'
+    ])
+    // theMovie() {
+    //   return this.$store.state.movie.theMovie
+    // },
+    // loading() {
+    //   return this.$store.state.movie.loading
+    // }
   },
   // 라이프사이클 추가, 컴포넌트가 생성된 직후
   created() {
     console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
-      // movie/tt4520988에서 tt4520988값을 id로 지정, 주소의 파라마터의 id
+      // movie/tt4520988에서 tt4520988값을 id로 지정, 주소의 파라미터의 id
       id: this.$route.params.id
     })
   },

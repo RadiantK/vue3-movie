@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Logo from '~/components/Logo'
 
 export default {
@@ -64,16 +65,28 @@ export default {
     }
   },
   computed: {
-    image() {
-      return this.$store.state.about.image
-    },
-    name() {
-      return this.$store.state.about.name
-    }
+    ...mapState('about', [
+      'image',
+      'name'
+    ]),
+    // ...mapState('movie', [ // 응용
+    //   'movies',
+    //   'loading',
+    //   'message',
+    //   'theMovie'
+    // ])
+    // image() {
+    //   return this.$store.state.about.image
+    // },
+    // name() {
+    //   return this.$store.state.about.name
+    // }
   },
   methods: {
     // /movie와 일치하면 내비게이션 버튼을 활성화해줌
     isMatch(path) {
+      // this.image mapState로 배열데이터로 상태를 정의하면 이런식으로 접근가능
+      // this.name
       if (!path) {
         return false
       }

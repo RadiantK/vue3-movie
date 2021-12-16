@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
 
 export default {
@@ -30,21 +31,31 @@ export default {
     }
   },
   computed: {
-    image() {
-      return this.$store.state.about.image
-    },
-    name() {
-      return this.$store.state.about.name
-    },
-    email() {
-       return this.$store.state.about.email
-    },
-    github() {
-       return this.$store.state.about.github
-    },
-    phone() {
-       return this.$store.state.about.phone
-    }
+    // 첫번째 인수 : 모듈의 이름을 명시(스토어),
+    // 두번째 인수 : 배열데이터로 상태데이터들의 이름을 명시
+    ...mapState('about', [
+      'image',
+      'name',
+      'github',
+      'blog',
+      'phone'
+    ])
+    // 위의코드로 단순화시킴
+    // image() {
+    //   return this.$store.state.about.image
+    // },
+    // name() {
+    //   return this.$store.state.about.name
+    // },
+    // email() {
+    //    return this.$store.state.about.email
+    // },
+    // github() {
+    //    return this.$store.state.about.github
+    // },
+    // phone() {
+    //    return this.$store.state.about.phone
+    // }
   },
   // 라이프사이클에선 비동기를 사용할 수 없음
   mounted() {
