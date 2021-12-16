@@ -140,8 +140,9 @@ export default {
         loading: true
       })
       try {
-        const res = await _fetchMovie(payload)
         // payload를 통해 id 영화의 imdbID라는 고유값을 가져옴
+        const res = await _fetchMovie(payload)
+        console.log(res.data)
         commit('updateState', {
           theMovie: res.data
         })              

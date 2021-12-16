@@ -17,14 +17,17 @@
 <script>
 export default {
   props: {
+    // 크기 : 숫자가 클수록 커짐
     size: {
       type: Number,
       default: 2
     },
+    // 부모요소 기준의 가운데 배치
     absolute: {
       type: Boolean,
       default: false
     },
+    // 뷰포트 기준의 가운데 배치
     fixed: {
       type: Boolean,
       default: false

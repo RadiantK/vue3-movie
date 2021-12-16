@@ -22,8 +22,13 @@
       v-else 
       class="movie-details">
       <div 
-        :style="{ backgroundImage: `url(${theMovie.Poster})` }"
-        class="poster"></div>
+        :style="{ backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})` }"
+        class="poster">
+        <Loader 
+          v-if="imageLoading" 
+          absolute />
+          <!-- 부모요소의 포지션값 꼭 확인 -->
+      </div>
       <div class="specs">
         <div class="title">
           {{ theMovie.Title }}
@@ -38,8 +43,23 @@
           <!-- 영화의 간단한 줄거리 -->
           {{ theMovie.Plot }}
         </div>
+        <!-- 영화의 평가 -->
         <div class="ratings">
           <h3>Ratings</h3>
+          <div class="rating-wrap">
+            <!-- theMovie에 들어있는 Ratings라는 3개객체데이터를 
+            갖는 배열데이터 출력 -->
+            <div 
+              v-for="{ Source: name, Value: score } in theMovie.Ratings"
+              :key="name"
+              :title="name"
+              class="rating">
+              <img 
+                :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"  
+                :alt="name" />
+              <span>{{ score }}</span>
+            </div>
+          </div>
         </div>
         <div>
           <h3>Actors</h3>
@@ -69,6 +89,11 @@ export default {
   components: {
     Loader
   },
+  data() {
+    return {
+      imageLoading: true
+    }
+  },
   computed: {
     theMovie() {
       return this.$store.state.movie.theMovie
@@ -84,6 +109,23 @@ export default {
       // movie/tt4520988에서 tt4520988값을 id로 지정, 주소의 파라마터의 id
       id: this.$route.params.id
     })
+  },
+  methods: {
+    // 이미지의 사이즈 변경
+    requestDiffSizeImage(url, size = 700) {
+      // 첫번째 인수의 사이즈를 두번째 인수로 교체
+      const src = url.replace('SX300', `SX${size}`)
+      this.$loadImage(src)
+        .then(()=> {
+          this.imageLoading = false
+        })
+        //이미지의 사이즈를 교체한 뒤 로딩표시가 나와야하기때문에
+        // async await 말고 .then 사용(로직의 흐름 방해없이 비동기 처리)
+        // 비동기 함수가 실행되고 나서 처리가 완료되면 then이 실행되는데
+        // return은 별개이기때문에 이미지가 바뀌면 내용이들어가는 변수src는
+        // 그것과 별개로 바로 리턴됨
+      return src
+    }
   }
 }
 </script>
@@ -143,6 +185,7 @@ export default {
     background-color: $gray-200;
     background-size: cover;
     background-position: center;
+    position: relative;
   }
   .specs {
     flex-grow: 1;
@@ -170,9 +213,21 @@ export default {
     .plot {
       margin-top: 20px
     }
-    // .ratings {
-
-    // }
+    .ratings {
+      .rating-wrap {
+        display: flex;
+        .rating {
+          display: flex;
+          align-items: center;
+          margin-right: 32px;
+          img {
+            height: 30px;
+            flex-shrink: 0;
+            margin-right: 6px;
+          }
+        }
+      }
+    }
     h3 {
       margin: 24px 0 6px;
       color: $black;
