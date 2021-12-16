@@ -93,6 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .container {
   display: flex;
   > * { // 컨테이너의 모든 자식 요소들
@@ -118,6 +119,24 @@ export default {
     font-weight: 700;
     // flex-item이 감소되지않게 해줌(Apply버튼)
     flex-shrink: 0;
+  }
+  // 뷰포트의 크기가 라지사이즈보다 작으면 플렉스아이템들을 다시 수직으로 바꿈
+  @include media-breakpoint-down(lg) {
+    display: block;
+    input {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .selects {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    select {
+      width: 100%;
+    }
+  }
+  .btn {
+    width: 100%;
   }
 }
 </style>

@@ -113,6 +113,13 @@ export default {
   methods: {
     // 이미지의 사이즈 변경
     requestDiffSizeImage(url, size = 700) {
+      if (!url || url === 'N/A') {
+        this.imageLoading = false
+        // 영화의 포스터가 없거나 해당사항이 없는경우 로딩표시를 종료하고
+        // 빈문자열을 반환해서 이미지에 아무것도 표시되지 않도록함
+        // 리턴에 아무값을 주지않으면 undefined가 출력되므로 빈문자 출력
+        return ''
+      }
       // 첫번째 인수의 사이즈를 두번째 인수로 교체
       const src = url.replace('SX300', `SX${size}`)
       this.$loadImage(src)
@@ -131,7 +138,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main.scss";
 
 .container {
   padding-top: 40px;
@@ -233,6 +239,36 @@ export default {
       color: $black;
       font-family: "Oswald", sans-serif;
       font-size: 20px;
+    }
+  }
+  // 뷰포트가 xl사이즈보다 작을 때 실행
+  @include media-breakpoint-down(xl) {
+    .poster {
+      width: 300px;
+      height: 300px * 3 / 2;
+      margin-right: 40px;
+    }
+  }
+  // 뷰포트가 lg사이즈보다 작아지만 수평출력을 수직 출력으로
+  @include media-breakpoint-down(lg) {
+    display: block;
+    .poster {
+      margin-bottom: 40px;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    .specs {
+      .title {
+        font-size: 50px;
+      }
+      .ratings {
+        .rating-wrap {
+          display: block;
+          .rating {
+            margin-top: 10px;
+          }
+        }
+      }
     }
   }
 }

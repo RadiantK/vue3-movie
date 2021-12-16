@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from './Home'
 import Movie from './Movie'
 import About from './About'
+import NotFound from './NotFound'
 
 // main.js에서 router라는 이름으로 받아서 하나의 플러그인으로 현재 프로젝트에 적용
 export default createRouter({
@@ -27,6 +28,11 @@ export default createRouter({
       // 그때 연결된 vue.js의 컴포넌트가 적용
       path: '/about',
       component: About
+    },
+    {
+      // / , /movie , /about 을 제외한 나머지 모든페이지는 NotFound
+      path: '/:notFound(.*)',
+      component: NotFound
     }
   ]
 })
