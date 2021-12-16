@@ -9,8 +9,8 @@
         :key="nav.name"
         class="nav-item">
         <!-- to는 링크의 대상 경로를 나타냄 -->
-        <!-- active-class는 router-active-class로 되어있는데
-        기본값을 active로 변경해서 사용 -->
+        <!-- active-class는 router-active-class가 기본값으로 되어있는데
+        값을 active로 변경해서 부트스트랩과 같을 수 있게 사용 -->
         <RouterLink
           :to="nav.href"
           active-class="active"
@@ -42,7 +42,7 @@ export default {
         },
         {
           name: 'Movie',
-          href: '/movie'
+          href: '/movie/tt4520988'
         },
         {
           name: 'About',

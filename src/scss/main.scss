@@ -1,10 +1,19 @@
 // Default variable overrides
 // 예시 $body-bg: #000;
 // 예시 $body-color: #111;
-$primary: #FDC000;
+
 // primary라는 이름을 가진 변수들이 노란색으로 활용됨
 // 속성을 정의할 때 varuables부분의 코드가 실행되기 전에 만들어져야함.
+$primary: #FDC000;
 
+// 컨테이너의 최대 가로너비를 지정해주는 변수를 사용자 지정
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 924px,
+  xl: 1140px,
+  xxl: 1364px
+);
 
 // Required
 // 밖으로 두번 빠져나가야 하므로 ../../
