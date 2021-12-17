@@ -1,9 +1,20 @@
-import { asyncFn } from './example'
+import axios from 'axios'
+import { fetchMovieTitle } from './example'
 
-// done매개변수 : 비동기 테스트가 언제 종료되는지 명시해주는 용도
+// 모의 함수 실행
 describe('비동기 테스트', () => {
-  test('async/await', async () => {
-    const res = await asyncFn()
-    expect(res).toBe('Done!')
-  }, 7000)
-})
+  test('영화 제목 변환', async () => {
+    // 모의 함수 fn = fuchtion
+    axios.get = jest.fn(() => {
+      return new Promise((resolve) => {
+        resolve({
+          data: {
+            Title: 'Frozen II'
+          }
+        })
+      })
+    })
+    const title = await fetchMovieTitle()
+    expect(title).toBe('Frozen ii')
+  })
+}) 

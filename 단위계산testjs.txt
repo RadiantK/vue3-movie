@@ -117,3 +117,39 @@ describe('비동기 테스트', () => {
     expect(res).toBe('Done!')
   }, 7000)
 })
+
+
+=========================================
+
+5
+
+import * as example from './example'
+
+// 6초걸리는 함수를 7ms만에 끝냄
+// 모의함수mock
+// example.asyncFn이라는 가짜함수를 만들어냄
+describe('비동기 테스트', () => {
+  test('async/await', async () => {
+    jest.spyOn(example, 'asyncFn')
+    .mockResolvedValue('Done!')
+    const res = await example.asyncFn()
+    expect(res).toBe('Done!')
+  }, 7000)
+})
+
+=============================================
+6
+
+
+import axios from "axios"
+// 첫글자만 대문자로 바꿔주는 기능
+import _upperFirst from 'lodash/upperFirst'
+// 글자들을 전부 소문자로 만들어주는 기능
+import _toLower from 'lodash/toLower'
+
+// 모의 데이터
+export async function fetchMovieTitle() {
+  const res = await axios.get('https://omdbapi.com?apikey=7035c60c&i=tt4520988')
+  // Frozen II => Forzen ii
+  return _upperFirst(_toLower(res.data.Title))
+}
