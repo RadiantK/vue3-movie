@@ -3,20 +3,23 @@
 import axios from 'axios'
 import _uniqBy from 'lodash/uniqBy'
 
+// _  이 파일 내에서만 사용하겠다는 표시
+const _defaultMessage = 'Search for the movie title!';
+
 export default {
-  // (module!) movie.js가 하나의 스토어에서 module화되서 사용될 수 있다는 명시
+  // (module) movie.js가 하나의 스토어에서 module화되서 사용될 수 있다는 명시
   namespaced: true,
-  // (data!) 우리가 실제로 취급해야하는 데이터들(스토어에선 상태라고 함)
+  // (state = data) 우리가 실제로 취급해야하는 데이터들(스토어에선 상태라고 함)
   state: function () {
     return {
       movies: [],
-      message: 'Search for the movie title!',
+      message: _defaultMessage,
       loading: false, // 기본값으로 로딩이 되고있지 않은 값
       theMovie: {} // 영화의 상세정보
     }
   },
-  // (computed!) state부분의 실제 데이터를 특정하게 계산해서
-  // 새로운 데이터 형식으로 만들때 사용 (계산된 상태)
+  // (getters = computed) state부분의 실제 데이터를 특정하게
+  // 계산해서 새로운 데이터 형식으로 만들때 사용 (계산된 데이터)
   // 이번 영화예제에선 따로 사용 x
   // getters: {
   //   movieIds(state) {
@@ -24,13 +27,14 @@ export default {
   //   }
   // },
   getters: {},
-  // (methods!) 각각의 함수를 만들어서 movie.js에 있는 데이터 활용
+  // (mutations = methods) 각각의 함수를 만들어서 movie.js에 있는 데이터 활용
   // (변이라는뜻) 관리하는 데이터들(state)을 변경시켜줄 수 있음
   // mutations를 제외한 다른vue.js의 컴포넌트에서 변경은 불가능
   // store는 어디에서든 사용할 수 있기때문에 모든 컴포넌트에서 수정할 수
   // 있게되면 관리가 어려워지기 때문에 데이터관리의 복잡성을 줄여주기 위해서
   // mutations에서만 데이터 변경 가능
-  // 기본적으로는 스토어의 데이터를 변경시켜주는 용도의 메서드만 정의
+  // 스토어의 데이터(state)를 변경시켜주는 용도의 로직만 작성
+  // store의 Mutations를 실행할 때 .commit() 메소드 사용
   mutations: {
     // 통합적으로 state의 데이터들을 갱신할수 있는 로직
     // (state 데이터에 접근할 수 있는 매개변수,
@@ -44,11 +48,15 @@ export default {
     },
     resetMovies(state) {
       state.movies = []
+      state.message = _defaultMessage
+      state.loading  = false
     }
   },
-  // (methods!). 각각의 함수를 만들어서 movie.js에 있는 데이터 활용
+  // (actions = methods, 비동기). 각각의 함수를 만들어서 movie.js에 있는 데이터 활용
   // 비동기. async await를 안붙여도 비동기로 동작함
   // state의 데이터를 직접적으로는 가져올 수 없음
+  // context.state, context.getters, context.commit, context.dispatch
+  // store의 Actions를 실행할 때 .dispatch() 메소드 사용
   actions: {
       // store의 각멤버 state, getters, mutations를 활용할 수 있게 context제공
       // searchMovies가 실행될 때 인수로 들어온 특정 데이터들을 payload로 받아줄 수 있음
@@ -160,8 +168,6 @@ export default {
     }
   }
 }
-// store의 Mutations를 실행할 때 .commit() 메소드 사용
-// store의 Actions를 실행할 때 .dispatch() 메소드 사용
 
 // _fetchMovie 현재파일인 moive.js 내부에서만 처리됨
 function _fetchMovie(payload) {
