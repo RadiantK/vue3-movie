@@ -1,0 +1,119 @@
+1
+
+// import { double } from './example'
+
+// // jest라는 패키지 내부에서 전역적으로 활용할 수 있는 함수
+// // test(test이름, 콜백함수)
+// // describe(그룹명, 콜백함수)테스트 그룹을 지어줌
+// describe('그룹1', () => {
+//   // 그룹안에있는 모든 테스트가 시작하기전에 1번만 실행
+//   beforeAll(() => {
+//     console.log('beforeAll!!')
+//   })
+//   // 그룹안에있는 모든 테스트 다음에 1번만 실행
+//   afterAll(() => {
+//     console.log('afterAll!!')
+//   })
+//   // 각각의 테스트가 동작하기 직전에 실행
+//   beforeEach(() => {
+//     console.log('beforeEach!!')
+//   })
+//   // 각각의 테스트가 동작한 이후 실행
+//   afterEach(() => {
+//     console.log('afterEach!!')
+//   })
+
+//   test('첫 테스트', () => {
+//     // expect 특정값 , toBe 실제 기대되는 값
+//     console.log('첫테스트')
+//     expect(123).toBe(123)
+//   })
+  
+//   test('인수가 숫자 데이터입니다', () => {
+//     console.log('두번째')
+//     expect(double(3)).toBe(6)
+//     expect(double(10)).toBe(20)
+//   })
+  
+  
+//   test('인수가 없습니다', () => {
+//     console.log('세번째테스트')
+//     expect(double()).toBe(0)
+//   })
+// })
+
+
+-------------------------------
+
+2
+
+
+const userA = {
+  name: 'Kang',
+  age: 11
+}
+const userB = {
+  name: 'Kim',
+  age: 22
+}
+
+test(' 데이터가 일치해야 합니다.', () => {
+  expect(userA.age).toBe(11)
+  expect(userA).toEqual({
+    name: 'Kang',
+    age: 11
+  })
+})
+
+test('데이터가 일치하지 않아야 합니다.', () => {
+  expect(userB.name).not.toBe('Kang')
+  expect(userB).not.toEqual(userA)
+})
+
+==========================================
+
+3
+
+import { TestScheduler } from 'jest'
+import { asyncFn } from './example'
+
+// done매개변수 : 비동기 테스트가 언제 종료되는지 명시해주는 용도
+describe('비동기 테스트', () => {
+  test('done', (done) => {
+    asyncFn().then((res) => {
+      done()
+      expect(res).toBe('Done!')
+    })
+  })
+
+  test('then', () => {
+    return asyncFn().then((res) => {
+      expect(res).toBe('Done!')
+    })
+  })
+
+  test('resolves', () => {
+    return expect(asyncFn()).resolves.toBe('Done!')
+  })
+
+  test('async/await', async () => {
+    const res = await asyncFn()
+    expect(res).toBe('Done!')
+  })
+})
+
+===============================
+
+4
+시간늘리기
+
+import { TestScheduler } from 'jest'
+import { asyncFn } from './example'
+
+// done매개변수 : 비동기 테스트가 언제 종료되는지 명시해주는 용도
+describe('비동기 테스트', () => {
+  test('async/await', async () => {
+    const res = await asyncFn()
+    expect(res).toBe('Done!')
+  }, 7000)
+})
