@@ -130,13 +130,13 @@ export default {
     .selects {
       margin-right: 0;
       margin-bottom: 10px;
+      select {
+        width: 100%;
+      }
     }
-    select {
-      width: 100%;
-    }
-  }
-  .btn {
+    .btn {
     width: 100%;
+    } 
   }
 }
 </style>

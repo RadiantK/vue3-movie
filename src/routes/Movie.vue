@@ -109,7 +109,7 @@ export default {
   },
   // 라이프사이클 추가, 컴포넌트가 생성된 직후
   created() {
-    console.log(this.$route)
+    // console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
       // movie/tt4520988에서 tt4520988값을 id로 지정, 주소의 파라미터의 id
       id: this.$route.params.id

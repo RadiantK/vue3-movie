@@ -97,8 +97,8 @@ export default {
         // Search로 검색한 영화명을 imdbID로 고유화
         movies: _uniqBy(Search, 'imdbID')
         })
-        console.log(totalResults); // 297 10개씩 나타나기때문에 30번검색
-        console.log(typeof totalResults); // string
+        // console.log(totalResults); // 297 10개씩 나타나기때문에 30번검색
+        // console.log(typeof totalResults); // string
 
         // 10진법의 숫자로 정수로 만들어서 total에 할당
         const total = parseInt(totalResults, 10); 
@@ -124,11 +124,11 @@ export default {
             })
           }
         }
-      } catch (message) {
+      } catch (error) {
         commit('updateState', {
           // 검색된 내용이 있는데 에러가 발생하면 movies 초기화
           movies: [],
-          message: message
+          message: error.message
         })
       } finally {
         commit('updateState', {
@@ -150,7 +150,7 @@ export default {
       try {
         // payload를 통해 id 영화의 imdbID라는 고유값을 가져옴
         const res = await _fetchMovie(payload)
-        console.log(res.data)
+        // console.log(res.data)
         commit('updateState', {
           theMovie: res.data
         })              
@@ -170,28 +170,37 @@ export default {
 }
 
 // _fetchMovie 현재파일인 moive.js 내부에서만 처리됨
-function _fetchMovie(payload) {
-  const { title, type, year, page, id } = payload;
-  const OMDB_API_KEY = '7035c60c'
-  // 삼항연산자로 id라는 속성에 데이터가 있으면 단일영화정보의 상세내용을
-  // 없으면 다수의 영화정보를 가져옴
-  const url = id 
-    ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
-    : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
-  // 영화 에러발생 확인해본 코드 내용
-  // const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}`
-  
-  return new Promise((resolve, reject) => {
-    axios.get(url)
-    .then((res)=> {
-      // console.log(res) 에러 데이터 확인
-      if (res.data.Error) {
-        reject(res.data.Error)
-      }
-      resolve(res)
-    })
-    .catch((err) => {
-      reject(err.message)
-    })
-  })
+async function _fetchMovie(payload) {
+  // axios.get payload의 여러 데이터들을 쿼리스트링으로 풀어서 작성
+  // axios.post payload를 포함하는 것으로도 전송가능
+  return await axios.post('/.netlify/functions/movie', payload)
 }
+
+
+
+
+// function _fetchMovie(payload) {
+// const { title, type, year, page, id } = payload;
+//   const OMDB_API_KEY = '7035c60c'
+//   // 삼항연산자로 id라는 속성에 데이터가 있으면 단일영화정보의 상세내용을
+//   // 없으면 다수의 영화정보를 가져옴
+//   const url = id 
+//     ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
+//     : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
+//   // 영화 에러발생 확인해본 코드 내용
+//   // const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}`
+  
+//   return new Promise((resolve, reject) => {
+//     axios.get(url)
+//     .then((res)=> {
+//       // console.log(res) 에러 데이터 확인
+//       if (res.data.Error) {
+//         reject(res.data.Error)
+//       }
+//       resolve(res)
+//     })
+//     .catch((err) => {
+//       reject(err.message)
+//     })
+//   })
+// }
