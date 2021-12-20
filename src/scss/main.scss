@@ -21,7 +21,7 @@ $container-max-widths: (
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/root";
-
+@import "../../node_modules/bootstrap/scss/bootstrap";
 // 테마 색상
 // variables에 정의되어있으므로 위에 선언하면 에러 발생 
 // 선언후 동작할 수 있도록 변수 코드 선언 아래애 둘 것.
@@ -36,5 +36,3 @@ $container-max-widths: (
 //   "light":      $light,
 //   "dark":       $dark
 // );
-
-@import "../../node_modules/bootstrap/scss/bootstrap";

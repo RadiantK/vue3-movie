@@ -20,7 +20,7 @@ export default createRouter({
     {
       // page를 구분해주는 경로
       // http://google.com/  /기호: 가장 메인페이지로 접근하겠다는 의미
-      // components: 메인페이지로 이동했을 때 어떤 vue.js의 컴포넌트를 사용할지 명시
+      // component: 메인페이지로 이동했을 때 어떤 vue.js의 컴포넌트를 사용할지 명시
       path: '/',
       component: Home
     },
