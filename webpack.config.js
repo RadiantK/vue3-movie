@@ -6,8 +6,8 @@
 const path = require('path');
 // nodejs에서 언제든 가져올 수있는 path라는 전역변수를 할당
 const HtmlPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
+const CopyPlugin = require('copy-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 
 // export
@@ -52,7 +52,7 @@ module.exports = {
           'css-loader', // js에서 css파일을 해석하는 용도
           'postcss-loader',         
           {
-            // 모든 컴포넌트 전역에서 @import '~/scss/main' 없이
+            // 모든 컴포넌트 전역에서 @import '~/scss/main.scss' 없이
             // scss 스타일 사용하기(설정하고 개발자서버 재부팅 할것)
             loader: 'sass-loader',
             options: {
