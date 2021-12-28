@@ -1,11 +1,5 @@
 # Vue3 Movie app
 
-Vue3와 OMDb API를 사용하는 영화 검색 애플리케이션입니다.<br>
-[vue3-webpack-template#vue-router](https://github.com/ParkYoungWoong/vue3-webpack-template)에서 프로젝트를 시작합니다.
-
-[Nuxt](https://nuxtjs.org/docs/2.x/get-started/installation) 프로젝트로 이관할 용도의 [Vue2 Movie App](https://github.com/ParkYoungWoong/vue2-movie-app) 프로젝트도 확인하세요!
-
-[DEMO](https://stupefied-hodgkin-d9d350.netlify.app/)
 
 ##  Branches
 
