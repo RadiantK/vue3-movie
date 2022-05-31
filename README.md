@@ -2,17 +2,6 @@
 
 <a href="https://clever-wright-17f121.netlify.app">페이지 완성본</a><br/>
 
-
-##  Branches
-
-진행 순서에 맞는 브랜치를 확인하세요.
-
-- [Master](https://github.com/ParkYoungWoong/vue3-movie-app)
-- [Default](https://github.com/ParkYoungWoong/vue3-movie-app/tree/default)
-- [Netlify CLI](https://github.com/ParkYoungWoong/vue3-movie-app/tree/netlify-cli)
-- [Unit Test](https://github.com/ParkYoungWoong/vue3-movie-app/tree/unit-test)
-- [E2E Test](https://github.com/ParkYoungWoong/vue3-movie-app/tree/e2e-test)
-
 ##  Docs
 
 - [Vue3](https://v3.ko.vuejs.org/guide/introduction.html)
