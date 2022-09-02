@@ -1,6 +1,6 @@
 # Vue3 Movie app
 
-<a href="https://clever-wright-17f121.netlify.app">페이지 완성본</a><br/>
+<a href="https://https://omdb-api-practice.netlify.app/">페이지 완성본</a><br/>
 
 ##  Docs
 
