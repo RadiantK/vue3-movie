@@ -1,7 +1,5 @@
 # Vue3 Movie app
 
-<a href="https://omdb-api-practice.netlify.app/#">페이지 완성본</a><br/>
-
 ##  Docs
 
 - [Vue3](https://v3.ko.vuejs.org/guide/introduction.html)
